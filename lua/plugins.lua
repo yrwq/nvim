@@ -1,65 +1,67 @@
-vim.cmd "packadd cfilter"
-vim.cmd "packadd packer.nvim"
+local init = {
+    "folke/neodev.nvim",
+    "tpope/vim-commentary",
+    "airblade/vim-gitgutter",
+    "tpope/vim-fugitive",
 
-local init = function()
-    use {
-        "wbthomason/packer.nvim",
-        opt = true
-    }
+    "othree/html5.vim",
+    "pangloss/vim-javascript",
+    "evanleck/vim-svelte",
 
-    use "tpope/vim-commentary"
+    "junegunn/fzf.vim",
+    "junegunn/fzf",
 
-    use 'nvim-lua/popup.nvim'
-    use "nvim-lua/plenary.nvim"
+    {
+        "sidebar-nvim/sidebar.nvim",
+        opts = function()
+            require("cool.sidebar")
+        end,
+    },
 
-    use {
+    {
+        "sainnhe/gruvbox-material",
+        opts = function() vim.cmd("colorscheme gruvbox-material") end
+    },
+
+    {
         "kyazdani42/nvim-tree.lua",
-        config = function() require'nvim-tree'.setup {} end
-    }
+        opts = function() require("nvim-tree").setup {} end
+    },
 
-    use {
+    {
         "ojroques/nvim-hardline",
-        config = function() require("cool.hardline") end
-    }
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+            "nvim-lualine/lualine.nvim"
+        },
+        opts = function() require("cool.hardline") end
+    },
 
-    use {
+    {
         "noib3/nvim-cokeline",
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function()
+        dependencies = {
+            "kyazdani42/nvim-web-devicons",
+            "nvim-lua/plenary.nvim"
+        },
+        opts = function()
             require("cool.bufbar")
         end
-    }
+    },
 
-    use {
+    {
         "norcalli/nvim-colorizer.lua",
         config = function()
-            require 'colorizer'.setup({
-                'css';
-                'svelte';
-                'javascript';
-                html = { mode = 'background' };
-            }, { mode = 'background' })
+            vim.o.termguicolors = true
+            require("colorizer").setup({"css"; }, { mode = "background" })
         end
     }
 
-    use "sainnhe/gruvbox-material"
+}
 
-    use "airblade/vim-gitgutter"
-    use "tpope/vim-fugitive"
 
-	use {
-		"sidebar-nvim/sidebar.nvim",
 
-		config = function()
-			require("cool.sidebar")
-		end,
-	}
 
-    use 'othree/html5.vim'
-    use 'pangloss/vim-javascript'
-    use 'evanleck/vim-svelte'
-    use 'wuelnerdotexe/vim-astro'
-    use 'junegunn/fzf.vim'
-end
+-- end
 
-return require("packer").startup(init)
+-- return require("packer").startup(init)
+return require("lazy").setup(init)

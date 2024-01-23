@@ -6,8 +6,6 @@ cmd[[
 set nocompatible
 syntax enable
 filetype plugin indent on
-set termguicolors
-colorscheme gruvbox-material
 ]]
 
 -- global opts
