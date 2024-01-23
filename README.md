@@ -3,7 +3,6 @@
 
 ### todo
 
-- set up [codeium](https://github.com/Exafunction/codeium.nvim)
 - set up [tailwind colorizing](https://github.com/roobert/tailwindcss-colorizer-cmp.nvim)
 - set up [markdown preview](https://github.com/ellisonleao/glow.nvim)
 - set up [surround](https://github.com/kylechui/nvim-surround)

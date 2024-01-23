@@ -50,18 +50,44 @@ local init = {
 
     {
         "norcalli/nvim-colorizer.lua",
-        config = function()
+        opts = function()
             vim.o.termguicolors = true
             require("colorizer").setup({"css"; }, { mode = "background" })
         end
-    }
+    },
+
+    {
+	    "L3MON4D3/LuaSnip",
+	    version = "v2.*",
+	    build = "make install_jsregexp"
+    },
+
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+        },
+        opts = function() require("cool.completion") end
+    },
+
+    {
+        "Exafunction/codeium.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+        },
+        event = 'BufEnter',
+        opts = function()
+            require("codeium").setup({
+                language_server = "codeium",
+            })
+        end
+    },
 
 }
 
-
-
-
--- end
-
--- return require("packer").startup(init)
 return require("lazy").setup(init)
