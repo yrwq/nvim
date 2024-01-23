@@ -88,6 +88,11 @@ local init = {
         end
     },
 
+    {
+        "ellisonleao/glow.nvim",
+        config = true,
+        cmd = "Glow"
+    }
 }
 
 return require("lazy").setup(init)
