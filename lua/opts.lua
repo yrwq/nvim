@@ -1,5 +1,14 @@
 local cmd = vim.cmd
 
+-- gui
+
+if vim.g.neovide then
+    vim.o.guifont = "Iosevka Nerd Font:h14"
+    vim.g.neovide_cursor_trail_size = 0.1
+    vim.g.neovide_cursor_trail_size = 0.1
+    vim.g.neovide_cursor_animation_length = 0.08
+end
+
 vim.o.termguicolors = true
 
 cmd[[
@@ -9,7 +18,6 @@ filetype plugin indent on
 ]]
 
 -- global opts
-vim.o.background = "dark"
 vim.o.hidden = true
 vim.o.pumheight = 10
 vim.o.conceallevel = 0

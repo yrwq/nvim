@@ -18,9 +18,18 @@ local init = {
         end,
     },
 
+    -- {
+    --     "sainnhe/gruvbox-material",
+    --     opts = function() vim.cmd("colorscheme gruvbox-material") end
+    -- },
+
     {
-        "sainnhe/gruvbox-material",
-        opts = function() vim.cmd("colorscheme gruvbox-material") end
+        "nyoom-engineering/oxocarbon.nvim",
+        config = function()
+            vim.o.background = "light"
+            vim.o.termguicolors = true
+            vim.cmd.colorscheme("oxocarbon")
+        end
     },
 
     {
@@ -29,12 +38,9 @@ local init = {
     },
 
     {
-        "ojroques/nvim-hardline",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-            "nvim-lualine/lualine.nvim"
-        },
-        opts = function() require("cool.hardline") end
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = function() require("cool.statusline") end
     },
 
     {
@@ -57,42 +63,31 @@ local init = {
     },
 
     {
-	    "L3MON4D3/LuaSnip",
-	    version = "v2.*",
-	    build = "make install_jsregexp"
+	"L3MON4D3/LuaSnip",
+	version = "v2.*",
+        dependencies = { "rafamadriz/friendly-snippets" },
+	build = "make install_jsregexp"
     },
 
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "neovim/nvim-lspconfig",
+            "nvim-lua/plenary.nvim",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
+            "rafamadriz/friendly-snippets",
         },
         opts = function() require("cool.completion") end
-    },
-
-    {
-        "Exafunction/codeium.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "hrsh7th/nvim-cmp",
-        },
-        event = 'BufEnter',
-        opts = function()
-            require("codeium").setup({
-                language_server = "codeium",
-            })
-        end
     },
 
     {
         "ellisonleao/glow.nvim",
         config = true,
         cmd = "Glow"
-    }
+    },
 }
 
 return require("lazy").setup(init)

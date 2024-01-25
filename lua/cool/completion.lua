@@ -2,16 +2,9 @@
 
 cmp.setup({
     snippet = {
-      expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        expand = function(args)
             require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
         end,
-    },
-    window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -21,27 +14,30 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources({
-        { name = "codeium" },
         { name = 'nvim_lsp' },
-        -- { name = 'vsnip' }, -- For vsnip users.
-        { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
-        -- { name = 'snippy' }, -- For snippy users.
+        { name = 'luasnip' },
     }, {
         { name = 'buffer' },
     })
 })
 
-require("luasnip.loaders.from_vscode").load({ include = {
-    "python",
-} })
+require("luasnip.loaders.from_vscode").lazy_load()
 
--- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig')['pyright'].setup {
-    capabilities = capabilities
+
+local servers = {
+    'pyright', 'rust_analyzer', 'zls', "denols"
 }
 
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
