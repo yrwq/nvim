@@ -88,6 +88,38 @@ local init = {
         config = true,
         cmd = "Glow"
     },
+
+    {
+        "roobert/tailwindcss-colorizer-cmp.nvim",
+        config = function()
+            require("tailwindcss-colorizer-cmp").setup({
+                color_square_width = 2,
+            })
+        end
+    },
+
+    --
+    -- scope
+    --
+    
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = '0.1.5',
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = function() require("cool.scope") end
+    },
+
+    {
+        "nvim-telescope/telescope-file-browser.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    },
+
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function() require("cool.treesit") end
+    },
+
 }
 
 return require("lazy").setup(init)
