@@ -5,13 +5,13 @@ require('cokeline').setup({
     fg = function(buffer)
       return
         buffer.is_focused
-        and get_hex('ColorColumn', 'bg')
+        and get_hex('NonText', 'bg')
          or get_hex('Normal', 'fg')
     end,
     bg = function(buffer)
       return
         buffer.is_focused
-        and get_hex('Normal', 'fg')
+        and get_hex('NonText', 'fg')
          or get_hex('ColorColumn', 'bg')
     end,
   },
@@ -33,7 +33,7 @@ require('cokeline').setup({
       end
     },
     {
-      text = '',
+      text = 'x',
       on_click = function(_, _, _, _, buffer)
         buffer:delete()
       end

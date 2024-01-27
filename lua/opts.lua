@@ -9,6 +9,10 @@ if vim.g.neovide then
     vim.g.neovide_cursor_animation_length = 0.08
 end
 
+vim.g.markdown_fenced_languages = {
+    "ts=typescriptreact"
+}
+
 vim.o.termguicolors = true
 
 cmd[[
@@ -18,6 +22,7 @@ filetype plugin indent on
 ]]
 
 -- global opts
+vim.o.autochdir = true
 vim.o.hidden = true
 vim.o.pumheight = 10
 vim.o.conceallevel = 0

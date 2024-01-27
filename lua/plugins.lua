@@ -1,3 +1,5 @@
+local conf = require("config")
+
 local init = {
     "folke/neodev.nvim",
     "tpope/vim-commentary",
@@ -11,6 +13,15 @@ local init = {
     "junegunn/fzf.vim",
     "junegunn/fzf",
 
+
+    {
+        "andweeb/presence.nvim",
+        opts = function()
+            if conf.rpc == true then
+                require("presence").setup {} end
+            end
+    },
+
     {
         "sidebar-nvim/sidebar.nvim",
         opts = function()
@@ -18,19 +29,33 @@ local init = {
         end,
     },
 
-    -- {
-    --     "sainnhe/gruvbox-material",
-    --     opts = function() vim.cmd("colorscheme gruvbox-material") end
-    -- },
-
     {
-        "nyoom-engineering/oxocarbon.nvim",
+        "sainnhe/gruvbox-material",
         config = function()
-            vim.o.background = "light"
+            if conf.dark == true then
+                vim.o.background = "dark"
+            else
+                vim.o.background = "light"
+            end
             vim.o.termguicolors = true
-            vim.cmd.colorscheme("oxocarbon")
+            vim.cmd("let g:gruvbox_material_background = 'hard'")
+            vim.cmd("colorscheme gruvbox-material")
         end
     },
+
+
+    -- {
+    --     "nyoom-engineering/oxocarbon.nvim",
+    --     config = function()
+    --         if conf.dark == true then
+    --             vim.o.background = "dark"
+    --         else
+    --             vim.o.background = "light"
+    --         end
+    --         vim.o.termguicolors = true
+    --         vim.cmd.colorscheme("oxocarbon")
+    --     end
+    -- },
 
     {
         "kyazdani42/nvim-tree.lua",
@@ -116,8 +141,29 @@ local init = {
 
     {
         "nvim-treesitter/nvim-treesitter",
+        tag = "v0.9.2",
+        cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
         build = ":TSUpdate",
-        config = function() require("cool.treesit") end
+        opts = function()
+            return require("cool.treesit")
+        end,
+        config = function(_, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end,
+      },
+
+    { "peitalin/vim-jsx-typescript" },
+
+    {
+        "lmburns/lf.nvim",
+        opts = function()
+            vim.g.lf_netrw = 1
+            require("lf").setup({
+                escape_quit = false,
+                border = "rounded",
+            })
+        end,
+        dependencies = {"akinsho/toggleterm.nvim"}
     },
 
 }

@@ -1,13 +1,33 @@
-local configs = require("nvim-treesitter.configs")
-
-configs.setup({
+local options = {
     ensure_installed = {
-        "c", "lua", "css", "markdown", "python", "ruby", "rust",
-        "javascript", "html", "json", "astro", "scss", "svelte",
-        "vim", "bash", "vimdoc", "make", "toml", "typescript", "vue",
-        "zig", "query"
+        "lua",
+        "svelte",
+        "c",
+        "css",
+        "markdown",
+        "python",
+        "ruby",
+        "rust",
+        "html",
+        "json",
+        "astro",
+        "scss",
+        "vim",
+        "bash",
+        "vimdoc",
+        "make",
+        "toml",
+        "vue",
+        "zig",
+        "query"
     },
-    sync_install = false,
-    highlight = { enable = true },
-    indent = { enable = true },  
-})
+
+    highlight = {
+        enable = true,
+        use_languagetree = true,
+    },
+
+    indent = { enable = true },
+}
+
+return options

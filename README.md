@@ -3,6 +3,15 @@
 
 ## setup lsp
 
+### rust
+
+rust-analyzer
+
+
+```bash
+rustup component add rust-src
+```
+
 ### bash
 
 bashls

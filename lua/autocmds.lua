@@ -7,17 +7,13 @@ autocmd('BufEnter', {
     command = 'set fo-=c fo-=r fo-=o'
 })
 
--- open sidebar
-autocmd('BufEnter', {
-    pattern = '',
-    command = 'SidebarNvimOpen'
-})
-
 -- Set indentation to 2 spaces
 augroup('setIndent', { clear = true })
 autocmd('Filetype', {
     group = 'setIndent',
-    pattern = { 'html', 'xhtml', 'css', 'scss', 'javascript', 'typescript', 'yaml' },
+    pattern = { 'html', 'xhtml', 'css', 'scss',
+        'javascript', 'typescript', 'yaml', "typescriptreact"
+    },
     command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2'
 })
 
