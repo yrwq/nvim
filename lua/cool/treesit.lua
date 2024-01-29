@@ -1,5 +1,7 @@
 local options = {
     ensure_installed = {
+        "typescript",
+        "tsx",
         "lua",
         "svelte",
         "c",
@@ -18,16 +20,23 @@ local options = {
         "make",
         "toml",
         "vue",
-        "zig",
-        "query"
+        "zig"
     },
+
 
     highlight = {
         enable = true,
         use_languagetree = true,
     },
 
-    indent = { enable = true },
+    indent = { enable = false },
+    autotag = { enable = true },
+
+    refactor = {
+        highlight_current_scope = { enable = true },
+    },
+
+
 }
 
 return options

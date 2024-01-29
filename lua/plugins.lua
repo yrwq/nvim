@@ -29,23 +29,8 @@ local init = {
         end,
     },
 
-    {
-        "sainnhe/gruvbox-material",
-        config = function()
-            if conf.dark == true then
-                vim.o.background = "dark"
-            else
-                vim.o.background = "light"
-            end
-            vim.o.termguicolors = true
-            vim.cmd("let g:gruvbox_material_background = 'hard'")
-            vim.cmd("colorscheme gruvbox-material")
-        end
-    },
-
-
     -- {
-    --     "nyoom-engineering/oxocarbon.nvim",
+    --     "sainnhe/gruvbox-material",
     --     config = function()
     --         if conf.dark == true then
     --             vim.o.background = "dark"
@@ -53,9 +38,24 @@ local init = {
     --             vim.o.background = "light"
     --         end
     --         vim.o.termguicolors = true
-    --         vim.cmd.colorscheme("oxocarbon")
+    --         vim.cmd("let g:gruvbox_material_background = 'hard'")
+    --         vim.cmd("colorscheme gruvbox-material")
     --     end
     -- },
+
+
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        config = function()
+            if conf.dark == true then
+                vim.o.background = "dark"
+            else
+                vim.o.background = "light"
+            end
+            vim.o.termguicolors = true
+            vim.cmd.colorscheme("oxocarbon")
+        end
+    },
 
     {
         "kyazdani42/nvim-tree.lua",
@@ -88,10 +88,10 @@ local init = {
     },
 
     {
-	"L3MON4D3/LuaSnip",
-	version = "v2.*",
+	    "L3MON4D3/LuaSnip",
+	    version = "v2.*",
         dependencies = { "rafamadriz/friendly-snippets" },
-	build = "make install_jsregexp"
+	    build = "make install_jsregexp"
     },
 
     {
@@ -104,6 +104,7 @@ local init = {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
             "rafamadriz/friendly-snippets",
+            "onsails/lspkind.nvim",
         },
         opts = function() require("cool.completion") end
     },
@@ -141,29 +142,25 @@ local init = {
 
     {
         "nvim-treesitter/nvim-treesitter",
-        tag = "v0.9.2",
-        cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-        build = ":TSUpdate",
+        dependencies = {
+            "windwp/nvim-ts-autotag",
+            "nvim-treesitter/nvim-treesitter-refactor"
+        },
         opts = function()
             return require("cool.treesit")
         end,
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
         end,
-      },
+    },
 
     { "peitalin/vim-jsx-typescript" },
 
     {
-        "lmburns/lf.nvim",
-        opts = function()
-            vim.g.lf_netrw = 1
-            require("lf").setup({
-                escape_quit = false,
-                border = "rounded",
-            })
-        end,
-        dependencies = {"akinsho/toggleterm.nvim"}
+        "m-demare/hlargs.nvim",
+        config = function()
+            require('hlargs').setup()
+        end
     },
 
 }

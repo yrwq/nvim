@@ -1,5 +1,11 @@
 # neovim configuration
 
+Installing pynvim is important
+
+```bash
+pip3 install pynvim --upgrade 
+```
+
 
 ## setup lsp
 
