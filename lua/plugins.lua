@@ -43,18 +43,18 @@ local init = {
     --     end
     -- },
 
-    {
-        "nyoom-engineering/oxocarbon.nvim",
-        config = function()
-            if conf.dark == true then
-                vim.o.background = "dark"
-            else
-                vim.o.background = "light"
-            end
-            vim.o.termguicolors = true
-            vim.cmd.colorscheme("oxocarbon")
-        end
-    },
+    -- {
+    --     "nyoom-engineering/oxocarbon.nvim",
+    --     config = function()
+    --         if conf.dark == true then
+    --             vim.o.background = "dark"
+    --         else
+    --             vim.o.background = "light"
+    --         end
+    --         vim.o.termguicolors = true
+    --         vim.cmd.colorscheme("oxocarbon")
+    --     end
+    -- },
 
     {
         url = "https://git.yrwq.xyz/yrwq/mountain",
