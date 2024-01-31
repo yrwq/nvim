@@ -6,7 +6,6 @@ local options = {
         "svelte",
         "c",
         "css",
-        "markdown",
         "python",
         "ruby",
         "rust",

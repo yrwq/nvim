@@ -212,6 +212,10 @@ local init = {
         end
     },
 
+    {
+        "ixru/nvim-markdown"
+    },
+
 }
 
 return require("lazy").setup(init)
