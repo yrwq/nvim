@@ -5,13 +5,13 @@ require('cokeline').setup({
     fg = function(buffer)
       return
         buffer.is_focused
-        and get_hex('NonText', 'bg')
+        and get_hex('NonText', 'fg')
          or get_hex('Normal', 'fg')
     end,
     bg = function(buffer)
       return
         buffer.is_focused
-        and get_hex('NonText', 'fg')
+        and get_hex('NonText', 'bg')
          or get_hex('ColorColumn', 'bg')
     end,
   },
