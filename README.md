@@ -9,6 +9,14 @@ pip3 install pynvim --upgrade
 
 ## setup lsp
 
+### lua
+
+lua_ls
+
+```bash
+brew install lua-language-server
+```
+
 ### rust
 
 rust-analyzer

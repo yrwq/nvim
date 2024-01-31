@@ -32,9 +32,9 @@ local options = {
     indent = { enable = false },
     autotag = { enable = true },
 
-    refactor = {
-        highlight_current_scope = { enable = true },
-    },
+    -- refactor = {
+    --     highlight_current_scope = { enable = true },
+    -- },
 
 
 }

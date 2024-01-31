@@ -1,6 +1,8 @@
 local cmp = require'cmp'
 local luasnip = require("luasnip")
 
+require("neodev").setup()
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -105,6 +107,7 @@ luasnip.config.setup({})
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local servers = {
+    "lua_ls",
     "pyright",
     "rust_analyzer",
     "gopls",
@@ -115,6 +118,9 @@ local servers = {
     "eslint",
     'tailwindcss'
 }
+
+require("neodev").setup({
+})
 
 local nvim_lsp = require("lspconfig")
 

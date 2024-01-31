@@ -6,14 +6,16 @@ local opts = { noremap=true, silent=true }
 -- buffer
 --
 
-map('n', '<leader>j', ':bp<cr>', opts)
-map('n', '<leader>k', ':bn<cr>', opts)
-map('n', '<leader>x', ':bd<cr>', opts)
+map('n', '<leader>h', ':bp<cr>', opts)
+map('n', '<leader>l', ':bn<cr>', opts)
+map('n', '<leader>q', ':bd<cr>', opts)
 
-map("n", "<leader>a", [[<cmd>vertical resize +5<cr>]], opts)
-map("n", "<leader>d", [[<cmd>vertical resize -5<cr>]], opts)
-map("n", "<leader>w", [[<cmd>horizontal resize +2<cr>]], opts)
-map("n", "<leader>s", [[<cmd>horizontal resize -2<cr>]], opts)
+-- fast save
+map("s", "<leader>s", ":w<cr>", opts)
+
+vim.keymap.set("n", "<leader>j", "<C-w>h", {})
+vim.keymap.set("n", "<leader>k", "<C-w>l", {})
+
 
 map('n', '<leader>d',     ':Telescope find_files<cr>', opts)
 -- map('n', '<leader>f',     ':Telescope file_browser<cr>', opts)

@@ -1,7 +1,6 @@
 local conf = require("config")
 
 local init = {
-    "folke/neodev.nvim",
     "tpope/vim-commentary",
     "airblade/vim-gitgutter",
     "tpope/vim-fugitive",
@@ -18,8 +17,9 @@ local init = {
         "andweeb/presence.nvim",
         opts = function()
             if conf.rpc == true then
-                require("presence").setup {} end
+                require("presence").setup {}
             end
+        end
     },
 
     {
@@ -80,18 +80,31 @@ local init = {
     },
 
     {
-        "norcalli/nvim-colorizer.lua",
-        opts = function()
+        "NvChad/nvim-colorizer.lua",
+        config = function()
             vim.o.termguicolors = true
-            require("colorizer").setup({"css"; }, { mode = "background" })
+            require("colorizer").setup({
+                filetypes = { "*" },
+                user_default_options = {
+                    css = true,
+                    mode = "background",
+                    tailwind = true,
+                }
+            }
+            )
         end
     },
 
     {
-	    "L3MON4D3/LuaSnip",
-	    version = "v2.*",
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
         dependencies = { "rafamadriz/friendly-snippets" },
-	    build = "make install_jsregexp"
+        build = "make install_jsregexp"
+    },
+
+    -- WARNING: needs to be setup before lsp
+    {
+        "folke/neodev.nvim",
     },
 
     {
@@ -117,7 +130,7 @@ local init = {
 
     {
         "roobert/tailwindcss-colorizer-cmp.nvim",
-        config = function()
+        opts = function()
             require("tailwindcss-colorizer-cmp").setup({
                 color_square_width = 2,
             })
@@ -127,7 +140,7 @@ local init = {
     --
     -- scope
     --
-    
+
     {
         "nvim-telescope/telescope.nvim",
         tag = '0.1.5',
@@ -173,6 +186,30 @@ local init = {
         config = function()
             require("nvim-surround").setup()
         end,
+    },
+
+    {
+        "folke/todo-comments.nvim",
+        enabled = true,
+        dependencies = "nvim-lua/plenary.nvim",
+        config = function()
+            require("todo-comments").setup({})
+        end
+    },
+
+    {
+        "shellRaining/hlchunk.nvim",
+        event = { "UIEnter" },
+        config = function()
+            require('hlchunk').setup({
+                indent = {
+                    chars = { "│", "¦", "┆", "┊", }, -- more code can be found in https://unicodeplus.com/
+                },
+                blank = {
+                    enable = false,
+                }
+            })
+        end
     },
 
 }
