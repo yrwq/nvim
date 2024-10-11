@@ -427,7 +427,6 @@ local init = {
 }
 
 return require("lazy").setup({init}, {
-	defaults = { lazy = true },
 	checker = { enabled = true },
 	performance = {
 		cache = {
@@ -437,7 +436,7 @@ return require("lazy").setup({init}, {
 			disabled_plugins = {
 				-- "matchit",
 				-- "matchparen",
-				"netrwPlugin",
+				-- "netrwPlugin",
 				"gzip",
 				"tarPlugin",
 				"tohtml",
