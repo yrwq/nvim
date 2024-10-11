@@ -1,17 +1,19 @@
 local get_hex = require('cokeline.hlgroups').get_hl_attr
 
 require('cokeline').setup({
+
   default_hl = {
     fg = function(buffer)
       return
         buffer.is_focused
         and get_hex('Normal', 'fg')
+         or get_hex('Normal', 'fg')
     end,
     bg = function(buffer)
       return
         buffer.is_focused
-        and get_hex('NonText', 'bg')
-         or get_hex('ColorColumn', 'bg')
+        and get_hex('VertSplit', 'fg')
+         or get_hex('CursorLine', 'bg')
     end,
   },
 

@@ -1,25 +1,22 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+-- show outline
+-- autocmd("VimEnter", {
+--     command = "Outline"
+-- })
+
 -- do not auto comment new lines
-autocmd('BufEnter', {
+autocmd("BufEnter", {
     pattern = '',
-    command = 'set fo-=c fo-=r fo-=o'
+    command = "set fo-=c fo-=r fo-=o"
 })
 
--- Set indentation to 2 spaces
-augroup('setIndent', { clear = true })
-autocmd('Filetype', {
-    group = 'setIndent',
-    pattern = { 'html', 'xhtml', 'css', 'scss',
-        'javascript', 'typescript', 'yaml', "typescriptreact"
-    },
-    command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2'
-})
 
-if autodir == true then
-  autocmd(
-      {"VimEnter"},
-      { pattern = "*", command = "cd " .. autodir_path, group = vim_enter_group }
-  )
-end
+-- Highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("highlight_yank", {}),
+	callback = function()
+		vim.highlight.on_yank({ timeout = 100 })
+	end,
+})

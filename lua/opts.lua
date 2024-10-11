@@ -3,19 +3,20 @@ local cmd = vim.cmd
 -- gui
 
 if vim.g.neovide then
-    vim.o.guifont = "Iosevka Nerd Font:h14"
-    vim.g.neovide_cursor_trail_size = 0.1
-    vim.g.neovide_cursor_trail_size = 0.1
-    vim.g.neovide_cursor_animation_length = 0.08
+  vim.o.guifont = "FantasqueSansM Nerd Font:h14"
+  vim.g.neovide_cursor_trail_size = 0.1
+  vim.g.neovide_cursor_trail_size = 0.1
+  vim.g.neovide_cursor_animation_length = 0.08
+  vim.g.neovide_confirm_quit = false
 end
 
 vim.g.markdown_fenced_languages = {
-    "ts=typescriptreact"
+  "ts=typescriptreact"
 }
 
 vim.o.termguicolors = true
 
-cmd[[
+cmd [[
 set nocompatible
 syntax enable
 filetype plugin indent on
@@ -30,9 +31,9 @@ vim.o.showmode = false
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.clipboard = "unnamedplus"
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.cursorline = true
@@ -58,7 +59,7 @@ vim.w.signcolumn = "yes"
 vim.g.mapleader = " "
 
 
-cmd[[
+cmd [[
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],

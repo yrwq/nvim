@@ -3,31 +3,63 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap=true, silent=true }
 
 --
+-- window nav
+--
+
+map("n", "<C-l>", "<C-w>l", opts)
+map("n", "<C-k>", "<C-w>k", opts)
+map("n", "<C-j>", "<C-w>j", opts)
+map("n", "<C-h>", "<C-w>h", opts)
+
+--
 -- buffer
 --
 
-map('n', '<leader>h', ':bp<cr>', opts)
-map('n', '<leader>l', ':bn<cr>', opts)
-map('n', '<leader>q', ':bd<cr>', opts)
+-- previous buffer
+map("n", "H", ":bp<cr>", opts)
+-- next buffer
+map("n", "L", ":bn<cr>", opts)
+-- delete buffer
+map("n", "<leader>q", ":Bdelete<cr>", opts)
+map("n", "Q", ":Bdelete<cr>", opts)
 
--- fast save
-map("s", "<leader>s", ":w<cr>", opts)
-
-vim.keymap.set("n", "<leader>j", "<C-w>h", {})
-vim.keymap.set("n", "<leader>k", "<C-w>l", {})
-
-
-map('n', '<leader>d',     ':Telescope find_files<cr>', opts)
--- map('n', '<leader>f',     ':Telescope file_browser<cr>', opts)
-map('n', '<leader>f',     ':Lf<cr>', opts)
-
-map('n', '<leader>t',     ':NvimTreeToggle<cr>', opts)
-map('n', '<leader>o',     ':FZF<cr>', opts)
-
-map("n", "L", ":lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", opts)
-
-
+-- switch buffer
 for i = 1,9 do
-    map('n', ('<leader>%s'):format(i),      ('<Plug>(cokeline-focus-%s)'):format(i), opts)
+    map("n", ("<leader>%s"):format(i),      ("<Plug>(cokeline-focus-%s)"):format(i), opts)
 end
 
+--
+-- util
+--
+
+-- fast save
+map("n", "<leader>s", ":w<cr>", opts)
+-- fast yank
+map("n", "Y", "yy", opts)
+-- disable higlight
+map("n", "<Tab>", ":noh<cr>", opts)
+-- go to new line from any cursor pos in insert mode
+map("i", "<S-Return>", "<C-o>o", opts)
+
+
+map("n", "<leader>t", ":NvimTreeToggle<cr>", opts)
+map("n", "<leader>T", ":SidebarNvimToggle<cr>", opts)
+map("n", "<leader>o", ":FZF<cr>", opts)
+map("n", "<leader>O", ":Outline<cr>", opts)
+map("n", "<leader>f", ":Oil<CR>", opts)
+map("n", "<leader>n", ":lua require('oil').toggle_float()<CR>", opts)
+map("n", "<leader>gm", ":GitMessenger<cr>", opts)
+map("n", "<leader>y", ":Nerdy<cr>", opts)
+
+--
+-- lsp
+--
+
+map("n", "K", ":lua vim.lsp.buf.hover()<cr>", opts)
+map("n", "gd", ":lua vim.lsp.buf.definition()<cr>", opts)
+map("n", "gD", ":lua vim.lsp.buf.declaration()<cr>", opts)
+map("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", opts)
+
+
+map("i", "<S-Return>", "<C-o>o", opts)
+map("n", "<leader>,", ":ZenMode<cr>", opts)
