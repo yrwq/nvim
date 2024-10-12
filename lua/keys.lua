@@ -44,7 +44,6 @@ map("i", "<S-Return>", "<C-o>o", opts)
 
 map("n", "<leader>t", ":NvimTreeToggle<cr>", opts)
 map("n", "<leader>T", ":SidebarNvimToggle<cr>", opts)
-map("n", "<leader>o", ":FZF<cr>", opts)
 map("n", "<leader>O", ":Outline<cr>", opts)
 map("n", "<leader>f", ":Oil<CR>", opts)
 map("n", "<leader>n", ":lua require('oil').toggle_float()<CR>", opts)
