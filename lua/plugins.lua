@@ -4,9 +4,15 @@ local init = {
   -- qol
   --
 
-  "airblade/vim-gitgutter",
   "tpope/vim-fugitive",
   "tpope/vim-commentary",
+
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("cool.gitsigns")
+    end,
+  },
 
   --fzf
   "junegunn/fzf.vim",
