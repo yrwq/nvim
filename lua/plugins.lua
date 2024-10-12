@@ -22,6 +22,7 @@ local init = {
   -- automatic "" {} () ''
   {
     "windwp/nvim-autopairs",
+    lazy = true,
     event = "InsertEnter",
     config = function()
       local npairs = require("nvim-autopairs")
@@ -33,6 +34,8 @@ local init = {
   -- Highlight arguments' definitions and usages, asynchronously, using Treesitter
   {
     "m-demare/hlargs.nvim",
+    lazy = true,
+    event = "VeryLazy",
     config = function()
       require("hlargs").setup()
     end
@@ -54,6 +57,8 @@ local init = {
   -- highlight todo comments
   {
     "folke/todo-comments.nvim",
+    lazy = true,
+    event = "VeryLazy",
     enabled = true,
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
@@ -61,10 +66,11 @@ local init = {
     end
   },
 
-
   -- nerd font picker
   {
       '2kabhishek/nerdy.nvim',
+      lazy = true,
+      event = "VeryLazy",
       dependencies = {
           'stevearc/dressing.nvim',
           'nvim-telescope/telescope.nvim',
@@ -104,6 +110,8 @@ local init = {
 
 	{
 		"folke/zen-mode.nvim",
+    lazy = true,
+    event = "VeryLazy",
 		cmd = 'ZenMode',
 		opts = {
       window = {
@@ -140,6 +148,8 @@ local init = {
   -- git status, todo in sidebar
   {
     "sidebar-nvim/sidebar.nvim",
+    lazy = true,
+    event = "VeryLazy",
     opts = function()
       require("cool.sidebar")
     end,
@@ -158,6 +168,8 @@ local init = {
   -- fm
   {
     "stevearc/oil.nvim",
+    lazy = true,
+    event = "VeryLazy",
     opts = {},
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     config = function()
@@ -204,6 +216,8 @@ local init = {
 
   {
     "nvim-lualine/lualine.nvim",
+    lazy = true,
+    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function() require("cool.statusline") end
   },
@@ -212,6 +226,8 @@ local init = {
 
   {
     "noib3/nvim-cokeline",
+    lazy = true,
+    event = "VeryLazy",
     dependencies = {
       "kyazdani42/nvim-web-devicons",
       "nvim-lua/plenary.nvim"
@@ -234,8 +250,7 @@ local init = {
           mode = "background",
           tailwind = true,
         }
-      }
-      )
+      })
     end
   },
 
@@ -255,7 +270,6 @@ local init = {
     "neovim/nvim-lspconfig",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "onsails/lspkind.nvim",
     },
     config = function() require("cool.lsp") end
   },
@@ -277,6 +291,8 @@ local init = {
 
 	{
 		"hedyhli/outline.nvim",
+    lazy = true,
+    event = "VeryLazy",
 		cmd = { "Outline", "OutlineOpen" },
 		opts = function()
 			local defaults = require("outline.config").defaults
@@ -298,10 +314,6 @@ local init = {
   --
 
 	{
-
-
-
-
     "hrsh7th/nvim-cmp",
     dependencies = {
       "neovim/nvim-lspconfig",
@@ -314,11 +326,9 @@ local init = {
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-calc",
       "hrsh7th/cmp-emoji",
-      "onsails/lspkind.nvim",
     },
     config = function()
       local cmp = require("cmp")
-      local lspkind = require("lspkind")
       local luasnip = require("luasnip")
       local cmp_select_opts = {behavior = cmp.SelectBehavior.Select}
 
@@ -364,8 +374,6 @@ local init = {
         }, {
           { name = 'buffer' },
           { name = 'path' },
-          { name = 'cmdline' },
-          { name = 'emoji' },
         })
       })
 
@@ -401,6 +409,8 @@ local init = {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && yarn install",
+    lazy = true,
+    event = "VeryLazy",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
