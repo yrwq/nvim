@@ -82,6 +82,11 @@ local init = {
   --
   -- themes
   --
+  {
+    "f-person/auto-dark-mode.nvim",
+    opts = {
+    }
+  },
 
   "catppuccin/nvim",
   "rose-pine/neovim",
