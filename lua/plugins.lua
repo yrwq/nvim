@@ -400,24 +400,10 @@ local init = {
 
 	},
 
+}
   --
   -- util
   --
-
-  -- mardkdown preview
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && yarn install",
-    lazy = true,
-    event = "VeryLazy",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
-  },
-
-}
 
 return require("lazy").setup({init}, {
 	checker = { enabled = true },
