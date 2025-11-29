@@ -259,15 +259,6 @@ local init = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   
-
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function() require("cool.lsp") end
-  },
-
   -- fast navigation
   {
     "folke/flash.nvim",
