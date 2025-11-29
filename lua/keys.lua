@@ -47,8 +47,6 @@ map("n", "<leader>T", ":SidebarNvimToggle<cr>", opts)
 map("n", "<leader>O", ":Outline<cr>", opts)
 map("n", "<leader>f", ":Oil<CR>", opts)
 map("n", "<leader>n", ":lua require('oil').toggle_float()<CR>", opts)
-map("n", "<leader>gm", ":GitMessenger<cr>", opts)
-map("n", "<leader>y", ":Nerdy<cr>", opts)
 
 --
 -- lsp
@@ -60,5 +58,4 @@ map("n", "gD", ":lua vim.lsp.buf.declaration()<cr>", opts)
 map("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", opts)
 
 
-map("i", "<S-Return>", "<C-o>o", opts)
 map("n", "<leader>,", ":ZenMode<cr>", opts)
