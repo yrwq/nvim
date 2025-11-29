@@ -158,6 +158,12 @@ local init = {
     } end
   },
 
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {}
+  },
+
   -- fm
   {
     "stevearc/oil.nvim",
@@ -238,17 +244,6 @@ local init = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   
-  -- fast navigation
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      { "zk", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
-      { "Zk", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    },
-  },
-
   --
 	-- code outline sidebar
   --
