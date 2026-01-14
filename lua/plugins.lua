@@ -144,15 +144,8 @@ local init = {
   -- better syntax hl
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "windwp/nvim-ts-autotag",
-      "nvim-treesitter/nvim-treesitter-refactor"
-    },
     opts = function()
       return require("cool.treesit")
-    end,
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
     end,
   },
 
@@ -250,17 +243,6 @@ local init = {
     end
   },
 
-  --
-  -- code
-  --
-
-  -- mdx highlight
-  {
-    "davidmh/mdx.nvim",
-    config = true,
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
-  
   --
 	-- code outline sidebar
   --
