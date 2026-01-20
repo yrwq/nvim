@@ -17,7 +17,7 @@ local init = {
   "moll/vim-bbye",
 
   -- guess indentation in buffer
-	{ "nmac427/guess-indent.nvim", lazy = false, priority = 50 },
+  { "nmac427/guess-indent.nvim", lazy = false, priority = 50 },
 
   -- automatic "" {} () ''
   {
@@ -85,7 +85,7 @@ local init = {
     config = function()
       vim.o.background = "dark"
       vim.o.termguicolors = true
-      vim.cmd("let g:gruvbox_material_background = 'hard'")
+      -- vim.cmd("let g:gruvbox_material_background = 'hard'")
     end
   },
 
@@ -147,6 +147,11 @@ local init = {
     opts = function()
       return require("cool.treesit")
     end,
+  },
+
+  {
+    "davidmh/mdx.nvim",
+    dependencies = {"nvim-treesitter/nvim-treesitter"}
   },
 
   -- git status, todo in sidebar
