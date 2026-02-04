@@ -26,6 +26,7 @@ filetype plugin indent on
 vim.o.autochdir = true
 vim.o.hidden = true
 vim.o.pumheight = 10
+vim.o.pumwidth = 40
 vim.o.conceallevel = 0
 vim.o.showmode = false
 vim.o.backup = false
@@ -55,6 +56,8 @@ vim.b.autoread = true
 -- window specific
 vim.w.noswapfile = true
 vim.w.signcolumn = "yes"
+
+vim.o.completeopt = "menu,menuone,noselect"
 
 vim.g.mapleader = " "
 

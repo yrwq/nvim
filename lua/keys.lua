@@ -1,5 +1,6 @@
-local map = vim.api.nvim_set_keymap
+local dap = require("dap")
 
+local map = vim.api.nvim_set_keymap
 local opts = { noremap=true, silent=true }
 
 --
@@ -46,19 +47,47 @@ map("n", "<leader>T", ":SidebarNvimToggle<cr>", opts)
 map("n", "<leader>O", ":Outline<cr>", opts)
 map("n", "<leader>f", ":Oil<CR>", opts)
 map("n", "<leader>n", ":lua require('oil').toggle_float()<CR>", opts)
-map("n", "<leader>lg", ":LazyGit<cr>", opts)
+map("n", "<leader>gg", ":Neogit<cr>", opts)
 
-vim.keymap.set("n", "ff", ":FzfLua global<CR>", { remap = true, silent = true })
-vim.keymap.set("n", "F", ":FzfLua live_grep<CR>", { remap = true, silent = true })
+map("n", "F", ":FzfLua global<CR>", opts)
+map("n", "ff", ":FzfLua live_grep<CR>", opts)
+map("n", ",", ":FzfLua buffers<CR>", opts)
+map("n", "<leader>ft", ":FzfLua btags<CR>", opts)
 
 --
 -- lsp
 --
 
-map("n", "K", ":lua vim.lsp.buf.hover()<cr>", opts)
+-- map("n", "K", ":lua vim.lsp.buf.hover()<cr>", opts)
 map("n", "gd", ":lua vim.lsp.buf.definition()<cr>", opts)
 map("n", "gD", ":lua vim.lsp.buf.declaration()<cr>", opts)
 map("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", opts)
 
+--
+-- dap
+--
 
-map("n", "<leader>,", ":ZenMode<cr>", opts)
+map("n", "<leader>dc", dap.continue, opts)
+map("n", "<leader>dO", dap.step_over, opts)
+map("n", "<leader>di", dap.step_into, opts)
+map("n", "<leader>do", dap.step_out, opts)
+map("n", "<leader>b", dap.toggle_breakpoint, opts)
+map("n", "<leader>dr", dap.repl.open)
+map("n", "<leadear>dl", dap.run_last)
+
+--
+-- cmp
+--
+
+-- scroll in hover
+vim.keymap.set({"n", "i", "s"}, "<C-f>", function()
+  if not require("noice.lsp").scroll(4) then
+    return "<C-f>"
+  end
+end, { silent = true, expr = true })
+
+vim.keymap.set({"n", "i", "s"}, "<C-b>", function()
+  if not require("noice.lsp").scroll(-4) then
+    return "<C-b>"
+  end
+end, { silent = true, expr = true })

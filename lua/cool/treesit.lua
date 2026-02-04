@@ -1,5 +1,7 @@
 local options = {
     ensure_installed = {
+        "yangc",
+        "odin",
         "typescript",
         "javascript",
         "tsx",
@@ -7,6 +9,7 @@ local options = {
         "svelte",
         "c",
         "css",
+        "haskell",
         "python",
         "ruby",
         "rust",
@@ -25,7 +28,6 @@ local options = {
         "asm",
         "zig"
     },
-
 
     highlight = {
         enable = true,

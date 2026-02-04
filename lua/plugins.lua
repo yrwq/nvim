@@ -1,8 +1,43 @@
 local init = {
+  -- debugging
+
+  {
+    "mfussenegger/nvim-dap",
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio"
+    },
+    config = function()
+      require("cool.dap")
+    end,
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("mason-nvim-dap").setup({
+        ensure_installed = { "codelldb" },
+      })
+    end,
+  },
 
   --
   -- qol
   --
+
+  {
+    dir = "~/Developer/Repos/yang/extra/nvim-ylang",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("yang").setup()
+    end,
+  },
 
   "tpope/vim-commentary",
 
@@ -72,53 +107,35 @@ local init = {
   --
 
   {
-    "f-person/auto-dark-mode.nvim",
-    opts = {
-    }
-  },
-
-  "catppuccin/nvim",
-  "rose-pine/neovim",
-
-  {
-    "sainnhe/gruvbox-material",
-    config = function()
-      vim.o.background = "dark"
-      vim.o.termguicolors = true
-      -- vim.cmd("let g:gruvbox_material_background = 'hard'")
+    "https://github.com/yrwq/paper",
+    config = function ()
+      require("paper")
     end
   },
 
+  -- {
+  --   "f-person/auto-dark-mode.nvim",
+  --   opts = {
+  --   }
+  -- },
 
-  {
-    "nyoom-engineering/oxocarbon.nvim",
-    config = function()
-      vim.o.background = "dark"
-      vim.o.termguicolors = true
-    end
-  },
+  -- {
+  --   "sainnhe/gruvbox-material",
+  --   config = function()
+  --     vim.o.background = "dark"
+  --     vim.o.termguicolors = true
+  --     -- vim.cmd("let g:gruvbox_material_background = 'hard'")
+  --   end
+  -- },
 
-  --
-	-- distraction-free
-  --
 
-	{
-		"folke/zen-mode.nvim",
-    lazy = true,
-    event = "VeryLazy",
-		cmd = 'ZenMode',
-		opts = {
-      window = {
-        backdrop = 0.95,
-        width = 120,
-        height = 1,
-      },
-
-			plugins = {
-				gitsigns = { enabled = true },
-			},
-		},
-	},
+  -- {
+  --   "nyoom-engineering/oxocarbon.nvim",
+  --   config = function()
+  --     vim.o.background = "dark"
+  --     vim.o.termguicolors = true
+  --   end
+  -- },
 
   --
   -- ui
@@ -126,27 +143,37 @@ local init = {
 
   -- git integration
   {
-    "kdheepak/lazygit.nvim",
+    "NeogitOrg/neogit",
     lazy = true,
-    cmd = {
-        "LazyGit",
-        "LazyGitConfig",
-        "LazyGitCurrentFile",
-        "LazyGitFilter",
-        "LazyGitFilterCurrentFile",
-    },
-    -- optional for floating window border decoration
     dependencies = {
-        "nvim-lua/plenary.nvim",
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "ibhagwan/fzf-lua",
     },
+    cmd = "Neogit",
+    keys = {
+      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+    }
   },
+
 
   -- better syntax hl
   {
     "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
     opts = function()
       return require("cool.treesit")
     end,
+    config = function(_, opts)
+      require("nvim-treesitter.config").setup(opts)
+    end,
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {},
   },
 
   {
@@ -252,6 +279,53 @@ local init = {
 	-- code outline sidebar
   --
 
+  --
+  -- lsp
+  --
+
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "ts_ls", "pyright", "rust_analyzer", "clangd" },
+      })
+    end,
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = { "williamboman/mason-lspconfig.nvim" },
+    config = function()
+      require("cool.lsp")
+    end,
+  },
+
+  --
+  -- completion
+  --
+
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
+    },
+    config = function()
+      require("cool.cmp")
+    end,
+  },
+
 	{
 		"hedyhli/outline.nvim",
     lazy = true,
@@ -270,14 +344,94 @@ local init = {
 			}
 			return opts
 		end,
-	}
+	},
 
+  {
+    "folke/noice.nvim",
+    event = "InsertEnter",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+    require("noice").setup({
+      cmdline = { enabled = false },
+      messages = { enabled = false },
+      popupmenu = {
+        enabled = true,
+        backend = "nui",
+      },
+      notify = { enabled = false },
 
+      presets = {
+        bottom_search = false,
+        command_palette = false,
+        long_message_to_split = false,
+        inc_rename = false,
+        lsp_doc_border = false,
+      },
+      views = {
+        popupmenu = {
+          relative = "editor",
+          position = {
+            row = "50%",
+            col = "50%",
+          },
 
+          size = {
+            width = 60,
+            height = 12,
+          },
+
+          border = {
+            style = "rounded",
+          },
+
+          win_options = {
+            winblend = 0,
+          },
+        },
+      },
+      lsp = {
+        progress = {
+          enabled = false,
+        },
+        signature = {
+          enabled = false,
+        },
+        message = {
+          enabled = false,
+        },
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+        },
+        documentation = {
+          view = "hover",
+          opts = { -- lsp_docs settings
+            lang = "markdown",
+            replace = true,
+            render = "plain",
+            format = { "{message}" },
+            position = { row = 2, col = 2 },
+            size = {
+              max_width = 60,
+              max_height = 15,
+            },
+            border = {
+              style = "single",
+            },
+            win_options = {
+              concealcursor = "n",
+              conceallevel = 3,
+            },
+          },
+        },
+      }
+    })
+    end
+  }
 }
-  --
-  -- util
-  --
 
 return require("lazy").setup({init}, {
 	checker = { enabled = true },

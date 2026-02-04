@@ -12,8 +12,8 @@ require('cokeline').setup({
     bg = function(buffer)
       return
         buffer.is_focused
-        and get_hex('VertSplit', 'fg')
-         or get_hex('CursorLine', 'bg')
+        and get_hex('CursorLine', 'bg')
+         or get_hex('Normal', 'bg')
     end,
   },
 

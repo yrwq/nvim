@@ -12,7 +12,6 @@ autocmd("BufEnter", {
     command = "set fo-=c fo-=r fo-=o"
 })
 
-
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("highlight_yank", {}),
