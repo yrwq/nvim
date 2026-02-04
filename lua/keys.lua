@@ -53,6 +53,7 @@ map("n", "F", ":FzfLua global<CR>", opts)
 map("n", "ff", ":FzfLua live_grep<CR>", opts)
 map("n", ",", ":FzfLua buffers<CR>", opts)
 map("n", "<leader>ft", ":FzfLua btags<CR>", opts)
+map("n", "<leader>fd", ":FzfLua diagnostics_workspace<CR>", opts)
 
 --
 -- lsp
@@ -67,13 +68,13 @@ map("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>", opts)
 -- dap
 --
 
-map("n", "<leader>dc", dap.continue, opts)
-map("n", "<leader>dO", dap.step_over, opts)
-map("n", "<leader>di", dap.step_into, opts)
-map("n", "<leader>do", dap.step_out, opts)
-map("n", "<leader>b", dap.toggle_breakpoint, opts)
-map("n", "<leader>dr", dap.repl.open)
-map("n", "<leadear>dl", dap.run_last)
+vim.keymap.set("n", "<leader>dc", dap.continue)
+vim.keymap.set("n", "<leader>dO", dap.step_over)
+vim.keymap.set("n", "<leader>di", dap.step_into)
+vim.keymap.set("n", "<leader>do", dap.step_out)
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+vim.keymap.set("n", "<leader>dr", dap.repl.open)
+vim.keymap.set("n", "<leadear>dl", dap.run_last)
 
 --
 -- cmp
