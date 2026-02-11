@@ -32,9 +32,9 @@ vim.o.showmode = false
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.clipboard = "unnamedplus"
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.cursorline = true
@@ -78,3 +78,14 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
   ]]
+
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"javascript", "javascriptreact", "typescript", "typescriptreact", "json"},
+    callback = function()
+        vim.opt_local.tabstop = 2
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.expandtab = true
+    end,
+})

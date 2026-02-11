@@ -19,7 +19,9 @@ local servers = {
     pyright = {},
     rust_analyzer = {},
     gopls = {},
-    clangd = {},
+    clangd = {
+      cmd = { "clangd", "--compile-commands-dir=build" },
+    },
 }
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(

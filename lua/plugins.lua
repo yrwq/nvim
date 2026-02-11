@@ -341,6 +341,7 @@ local init = {
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
@@ -372,7 +373,7 @@ local init = {
 
   {
     "folke/noice.nvim",
-    event = "InsertEnter",
+    lazy = false,
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
