@@ -49,12 +49,17 @@ map("n", "<leader>f", ":Oil<CR>", opts)
 map("n", "<leader>n", ":lua require('oil').toggle_float()<CR>", opts)
 map("n", "<leader>gg", ":Neogit<cr>", opts)
 
-map("n", "F", ":FzfLua global<CR>", opts)
-map("n", "ff", ":FzfLua live_grep<CR>", opts)
+-- map("n", "ff", ":FzfLua global<CR>", opts)
+map("n", "F", ":FzfLua live_grep<CR>", opts)
 map("n", ",", ":FzfLua buffers<CR>", opts)
 map("n", "<leader>ft", ":FzfLua btags<CR>", opts)
 map("n", "<leader>fd", ":FzfLua diagnostics_workspace<CR>", opts)
 
+vim.keymap.set("n", "ff", function()
+  local fzf = require("fzf-lua")
+  local root = fzf.path.git_root({ cwd = vim.fn.getcwd() }) -- safe
+  fzf.files({ cwd = root or vim.fn.getcwd() })
+end, { desc = "Find files (git root)" })
 --
 -- lsp
 --
@@ -76,10 +81,6 @@ vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<leader>dr", dap.repl.open)
 vim.keymap.set("n", "<leadear>dl", dap.run_last)
 
---
--- cmp
---
-
 -- scroll in hover
 vim.keymap.set({"n", "i", "s"}, "<C-f>", function()
   if not require("noice.lsp").scroll(4) then
@@ -92,3 +93,11 @@ vim.keymap.set({"n", "i", "s"}, "<C-b>", function()
     return "<C-b>"
   end
 end, { silent = true, expr = true })
+
+function _G.set_terminal_keymaps()
+  local opt = {buffer = 0}
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opt)
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opt)
+end
+
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')

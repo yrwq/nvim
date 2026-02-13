@@ -1,19 +1,5 @@
 local cmd = vim.cmd
 
--- gui
-
-if vim.g.neovide then
-  vim.o.guifont = "FantasqueSansM Nerd Font:h14"
-  vim.g.neovide_cursor_trail_size = 0.1
-  vim.g.neovide_cursor_trail_size = 0.1
-  vim.g.neovide_cursor_animation_length = 0.08
-  vim.g.neovide_confirm_quit = false
-end
-
-vim.g.markdown_fenced_languages = {
-  "ts=typescriptreact"
-}
-
 vim.o.termguicolors = true
 
 cmd [[
@@ -81,7 +67,14 @@ let g:fzf_colors =
 
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"javascript", "javascriptreact", "typescript", "typescriptreact", "json"},
+    pattern = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "json",
+      "lua"
+    },
     callback = function()
         vim.opt_local.tabstop = 2
         vim.opt_local.shiftwidth = 2

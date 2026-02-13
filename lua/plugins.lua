@@ -32,10 +32,12 @@ local init = {
   --
 
   {
-    dir = "~/Developer/Repos/yang/extra/nvim-ylang",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    "akinsho/toggleterm.nvim",
     config = function()
-      require("yang").setup()
+      require("toggleterm").setup({
+        hide_numbers = true,
+
+      })
     end,
   },
 
@@ -130,36 +132,14 @@ local init = {
   --
 
   {
-    -- "https://github.com/yrwq/paper",
-    dir = "~/Developer/Repos/paper-nvim",
-    config = function ()
-      require("paper")
+    "sainnhe/gruvbox-material",
+    config = function()
+      vim.o.background = "dark"
+      vim.o.termguicolors = true
+      vim.cmd("let g:gruvbox_material_background = 'hard'")
+      vim.cmd('colorscheme gruvbox-material')
     end
   },
-
-  -- {
-  --   "f-person/auto-dark-mode.nvim",
-  --   opts = {
-  --   }
-  -- },
-
-  -- {
-  --   "sainnhe/gruvbox-material",
-  --   config = function()
-  --     vim.o.background = "dark"
-  --     vim.o.termguicolors = true
-  --     -- vim.cmd("let g:gruvbox_material_background = 'hard'")
-  --   end
-  -- },
-
-
-  -- {
-  --   "nyoom-engineering/oxocarbon.nvim",
-  --   config = function()
-  --     vim.o.background = "dark"
-  --     vim.o.termguicolors = true
-  --   end
-  -- },
 
   --
   -- ui
@@ -205,18 +185,6 @@ local init = {
     dependencies = {"nvim-treesitter/nvim-treesitter"}
   },
 
-  -- git status, todo in sidebar
-  {
-    "sidebar-nvim/sidebar.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    opts = function()
-      require("cool.sidebar")
-    end,
-  },
-
-  -- file browsers
-
   -- tree
   {
     "kyazdani42/nvim-tree.lua",
@@ -227,34 +195,7 @@ local init = {
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {}
-  },
-
-  -- fm
-  {
-    "stevearc/oil.nvim",
-    lazy = true,
-    event = "VeryLazy",
     opts = {},
-    dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    config = function()
-      require("oil").setup({
-        default_file_explorer = true,
-        view_options = {
-          show_hidden = true,
-        },
-        keymaps = {
-          ["<CR>"] = "actions.select",
-          ["<C-p>"] = "actions.preview",
-          ["q"] = "actions.close",
-          ["g."] = "actions.toggle_hidden",
-        },
-        float = {
-          padding = 3,
-          border = "rounded",
-        },
-      })
-    end,
   },
 
   -- status line
@@ -300,10 +241,6 @@ local init = {
   },
 
   --
-	-- code outline sidebar
-  --
-
-  --
   -- lsp
   --
 
@@ -319,7 +256,7 @@ local init = {
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "pyright", "rust_analyzer", "clangd" },
+        ensure_installed = { "lua_ls", "ts_ls", "pyright", "rust_analyzer" },
       })
     end,
   },
