@@ -180,11 +180,6 @@ local init = {
     opts = {},
   },
 
-  {
-    "davidmh/mdx.nvim",
-    dependencies = {"nvim-treesitter/nvim-treesitter"}
-  },
-
   -- tree
   {
     "kyazdani42/nvim-tree.lua",

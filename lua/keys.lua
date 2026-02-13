@@ -43,14 +43,14 @@ map("n", "<Tab>", ":noh<cr>", opts)
 map("i", "<S-Return>", "<C-o>o", opts)
 
 map("n", "<leader>t", ":NvimTreeToggle<cr>", opts)
-map("n", "<leader>T", ":SidebarNvimToggle<cr>", opts)
 map("n", "<leader>O", ":Outline<cr>", opts)
-map("n", "<leader>f", ":Oil<CR>", opts)
-map("n", "<leader>n", ":lua require('oil').toggle_float()<CR>", opts)
 map("n", "<leader>gg", ":Neogit<cr>", opts)
+
+map("n", "tt", ":ToggleTerm<CR>", opts)
 
 -- map("n", "ff", ":FzfLua global<CR>", opts)
 map("n", "F", ":FzfLua live_grep<CR>", opts)
+map("n", "fr", ":FzfLua lsp_references<CR>", opts)
 map("n", ",", ":FzfLua buffers<CR>", opts)
 map("n", "<leader>ft", ":FzfLua btags<CR>", opts)
 map("n", "<leader>fd", ":FzfLua diagnostics_workspace<CR>", opts)

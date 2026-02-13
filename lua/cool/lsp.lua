@@ -17,10 +17,11 @@ local servers = {
     ts_ls = {},
     hsl = {},
     pyright = {},
+    zls = {},
     rust_analyzer = {},
     gopls = {},
     clangd = {
-      cmd = { "clangd", "--compile-commands-dir=build" },
+      -- cmd = { "clangd", "--compile-commands-dir=build" },
     },
 }
 

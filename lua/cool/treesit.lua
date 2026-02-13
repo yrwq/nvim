@@ -19,6 +19,7 @@ local options = {
         "scss",
         "vim",
         "bash",
+        "markdown",
         "vimdoc",
         "make",
         "toml",
