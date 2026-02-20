@@ -6,13 +6,13 @@ require('cokeline').setup({
     fg = function(buffer)
       return
         buffer.is_focused
-        and get_hex('Normal', 'fg')
+        and get_hex('Number', 'fg')
          or get_hex('Normal', 'fg')
     end,
     bg = function(buffer)
       return
         buffer.is_focused
-        and get_hex('CursorLine', 'bg')
+        and get_hex('Normal', 'bg')
          or get_hex('Normal', 'bg')
     end,
   },
