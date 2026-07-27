@@ -83,15 +83,52 @@ local init = {
     -- themes
     --
 
+    -- {
+    --     "https://github.com/nyoom-engineering/oxocarbon.nvim",
+    --     config = function()
+    --         vim.cmd("colorscheme oxocarbon")
+    --     end
+    -- },
+
     {
-        "sainnhe/gruvbox-material",
+        "miikanissi/modus-themes.nvim", priority = 1000,
         config = function()
-            vim.o.background = "dark"
+            vim.o.background = "light"
             vim.o.termguicolors = true
-            vim.cmd("let g:gruvbox_material_background = 'hard'")
-            vim.cmd('colorscheme gruvbox-material')
+            vim.cmd("colorscheme modus")
         end
     },
+
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+
+    {
+        "f-person/auto-dark-mode.nvim",
+        opts = {
+            set_dark_mode = function()
+                vim.api.nvim_set_option_value("background", "dark", {})
+                vim.opt.background = "dark"
+                vim.cmd("set background=dark")
+            end,
+            set_light_mode = function()
+                vim.api.nvim_set_option_value("background", "light", {})
+                vim.opt.background = "light"
+                vim.cmd("set background=light")
+                -- vim.cmd("colorscheme catppuccin-latte")
+            end,
+            update_interval = 3000,
+            fallback = "dark"
+        }
+    },
+
+    -- {
+    --     "sainnhe/gruvbox-material",
+    --     config = function()
+    --         vim.o.background = "dark"
+    --         vim.o.termguicolors = true
+    --         vim.cmd("let g:gruvbox_material_background = 'hard'")
+    --         -- vim.cmd('colorscheme gruvbox-material')
+    --     end
+    -- },
 
     --
     -- ui
@@ -135,7 +172,11 @@ local init = {
     {
         "ibhagwan/fzf-lua",
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {},
+        opts = {
+            file_ignore_patterns = {
+                "node_modules/", "dist/", ".git/", "build/", "target/", "package-lock.json",
+            },
+        },
     },
 
     -- status line
@@ -177,6 +218,14 @@ local init = {
         end
     },
 
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+        -- -@module 'render-markdown'
+        -- -@type render.md.UserConfig
+        opts = {},
+    },
+
     --
     -- lsp
     --
@@ -193,7 +242,7 @@ local init = {
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "ts_ls", "pyright", "rust_analyzer" },
+                ensure_installed = { "rust_analyzer" },
             })
         end,
     },
